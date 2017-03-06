@@ -1,8 +1,7 @@
 {
-  "name": "backend",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "name": "site-starter",
+  "version": "1.0.0",
+  "description": "A NodeJS based api with a ReactJS for admin panel and SailsJS for the api",
   "keywords": [],
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -33,7 +32,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cristiansarov/backend.git"
+    "url": "git://github.com/cristiansarov/site-starter.git"
   },
   "author": "cristiansarov",
   "license": "",
