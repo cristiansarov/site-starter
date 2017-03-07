@@ -1,6 +1,6 @@
 {
   "name": "site-starter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A NodeJS based api with a ReactJS for admin panel and SailsJS for the api",
   "keywords": [],
   "dependencies": {
@@ -28,7 +28,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "postinstall": "npm install sails-mysql"
+    "postinstall": "npm install sails-mysql connect-mongo"
   },
   "main": "app.js",
   "repository": {
