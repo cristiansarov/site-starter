@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = function (sails) {
   const loader = require('sails-util-mvcsloader')(sails);
-  const rootPath = path.join(__dirname, '../../../', sails.config.site);
+  const rootPath = path.join(__dirname, '../../../../');
   loader.configure({
     config: path.join(rootPath, '/config'),
     policies: path.join(rootPath, '/api/policies')

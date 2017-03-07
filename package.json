@@ -6,7 +6,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "compression": "^1.6.2",
-    "connect-mongo": "^0.8.2",
+    "connect-mongo": "0.8.2",
     "ejs": "2.3.4",
     "express": "^4.14.1",
     "imagemin": "^5.2.2",
@@ -27,7 +27,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "npm install sails-mysql"
   },
   "main": "app.js",
   "repository": {
