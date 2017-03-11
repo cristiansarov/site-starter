@@ -1,6 +1,6 @@
 {
   "name": "site-starter",
-  "version": "1.0.4",
+  "version": "1.0.41",
   "description": "A NodeJS based api with a ReactJS for admin panel and SailsJS for the api",
   "keywords": [],
   "dependencies": {
