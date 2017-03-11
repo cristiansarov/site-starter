@@ -28,7 +28,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "postinstall": "npm install sails-mysql connect-mongo"
+    "postinstall": "npm install sails-mysql connect-mongo sails-hook-pagify"
   },
   "main": "app.js",
   "repository": {
