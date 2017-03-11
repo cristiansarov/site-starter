@@ -1,0 +1,70 @@
+@import '../../Main/variables';
+
+.dashboard-panel {
+  & {border: 1px solid #ccc;position: relative;margin: 20px 0;}
+  &>h2 {font-size: 14px;margin: 0;position: absolute;top: 6px;right: 6px;text-transform: uppercase;font-weight: bold;letter-spacing: 1px;color: #b5bcce;}
+}
+
+.current-session-manager {
+  & {display:flex;align-items: center;}
+  .csm-nav {
+    & {min-width:200px;font-family: Ubuntu, sans-serif;}
+    &:last-child {text-align:right;}
+    button>div {display:flex;align-items: center;}
+    &:last-child button>div {flex-direction: row-reverse;}
+    button span {font-size: 16px;}
+    &:last-child button span {font-size: 22px;font-weight: bold;}
+    button i {margin: 0 10px;font-size: 22px;}
+    &:last-child button i {font-size: 40px;}
+  }
+  .csm-top-left {position: absolute;top: 4px;left: 4px;}
+  .csm-top-left>button {background: #b5bcce;color: #fff;width: 30px;height: 30px;line-height: 31px;border-radius: 50%;padding-right: 1px;margin-right: 4px;}
+  .csm-status {
+    & {flex-grow: 1;text-align: center;padding: 30px 0;}
+    h3 {font-size: 26px;font-weight: bold;margin: 0;}
+    i {font-size: 50px;display: inline-block;width: 100px;height: 100px;line-height: 100px;background: #1d073e;border-radius: 50%;color: #fff;margin: 15px 0;}
+    h4 {font-size: 24px;margin: 0;text-transform: uppercase;font-weight: bold;}
+  }
+}
+
+.results-panel {
+  & {}
+  .rp-header {
+    & {display:inline-flex;align-items: center;margin-top: 40px;}
+    &>* {padding: 8px 12px;white-space:nowrap;}
+    &>*:first-child {min-width: 250px;}
+    button {min-width: 0;padding: 8px 16px;}
+    button.active {background: #1d073e;color:#fff;border-color:#1d073e;}
+  }
+  .rp-content {
+    & {padding: 10px 20px;}
+
+    // Result list
+    .result-list {
+      h3 {font-size: 20px;}
+      .rl-item {
+        & {display:flex;align-items: center;margin: 15px 0;color:#000;}
+        &>div {}
+        &>div:nth-child(1) {margin-right:10px;}
+        &>div:nth-child(2) {flex-grow: 1;min-width: 1px;}
+        h4 {margin: 0;font-size: 15px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+        i {margin-left: 10px;position: relative;color: #9ec023;top: 1px;}
+        button {
+          & {float:right;}
+          i {color:#000;}
+          &[disabled] i {opacity:0.3;}
+        }
+        .image {width: 50px;}
+        .progress {overflow: visible;height: 10px;box-shadow: none;margin:0;background: #F8FAFB;border-radius: 5px;}
+        .progress-bar {background: #9EC023;position: relative;box-shadow: none;border-radius: 5px;}
+        .progress-bar>span {position: absolute;top: -15px;right: -15px;background: #9ec023;border: 3px solid #fff;width: 50px;height: 50px;line-height: 46px;display: block;border-radius: 50%;font-size: 14px;font-weight: 800;letter-spacing: 1px;-webkit-transition: all .3s ease-in-out;-moz-transition: all .3s ease-in-out ;-ms-transition: all .3s ease-in-out ;-o-transition: all .3s ease-in-out ;transition: all .3s ease-in-out ;}
+        .progress-bar>span sup {position: relative;top: -8px;right: 3px;font-size: 60%;margin-right: -5px;}
+        .progress-bar>span small {font-size: 70%;}
+      }
+      .fade {position: absolute;z-index: 1;background: #fff;border: 1px solid #ccc;border-radius: 5px;padding: 6px 10px;visibility: hidden;top:55px;right:0;overflow: auto;max-height: 300px;}
+      .fade.in {visibility: visible;}
+    }
+
+
+  }
+}

@@ -1,0 +1,111 @@
+@import '../../../../Main/variables';
+
+// BUTTON
+.button {
+  display: inline-block;
+  min-width: 130px;
+  background: transparent;
+  border: 1px solid $grey;
+  line-height: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  font-size: 14px;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 8px 20px;
+  color: #000;
+  border-radius: 9px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: center;
+
+  &:hover, &:active {
+    color: white;
+    background: #33363f;
+  }
+  &>i {
+    margin: -4px 5px 0 -1px;
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+  }
+  .button-spinner {
+    display: inline-block;
+    margin-left: -20px;
+    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    i {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  &:hover .button__visible, &:not(:hover) .button__hidden {
+    display:none;
+  }
+
+
+  /**
+    COLORS
+   */
+  &--green {
+    background: $green;
+    border-color: $green;
+    color: white;
+    font-weight: 500;
+    &:hover, &:active {
+      color: $green;
+      background: $lightGreen;
+    }
+  }
+  &--green-wire {
+    border-color: $green;
+    color: $green;
+    &:hover, &:active, &:focus {
+      color: $green;
+    }
+  }
+
+
+  /**
+    SHAPES
+   */
+  &--add {
+    &:before {
+      font-family: icomoon;
+      content: "\E90C";
+      position: absolute;
+      top: -10px;
+      right: -12px;
+      width: 28px;
+      height: 28px;
+      line-height: 24px;
+      background: #191b23;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid #b5bcce;
+      font-size: 12px;
+    }
+    &.button--green:before {
+      border-color: $green;
+      color: $green;
+      background: white;
+    }
+  }
+
+}
+
+.button-wire {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none;
+  &, &:hover, &:active, &:focus {
+    color: inherit;
+  }
+}

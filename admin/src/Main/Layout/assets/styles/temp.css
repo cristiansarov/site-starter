@@ -1,0 +1,14 @@
+.tab-content:after {display: table;content: " ";clear: both;}
+.community-list {border: 1px solid;margin-bottom: 1%;border-radius: 4px;}
+.community-item {margin-left: 1%;margin-bottom: 1%;margin-right: 1%;border-bottom: 2px solid;}
+.announcement-list {border-top: 1px solid;border-left: 1px solid;border-right: 1px solid;margin-bottom: 1%;border-radius: 4px;}
+.announcement-list .item {border-bottom: 1px solid;margin-bottom: 4px;border-radius: 4px;}
+.announcement-item {border: 1px solid;width: 80%;margin: 15px;padding: 15px;font-family: 'Alegreya Sans', sans-serif;font-size: 16px;}
+.list-component-more:hover {background-color: #eee;cursor: pointer;}
+.forum-list {border-top: 1px solid;border-left: 1px solid;border-right: 1px solid;margin-bottom: 1%;border-radius: 4px;}
+.forum-list .item {border-bottom: 1px solid;margin-bottom: 4px;border-radius: 4px;}
+.topic-list {border-top: 1px solid;border-left: 1px solid;border-right: 1px solid;margin-bottom: 1%;border-radius: 4px;}
+.topic-list .item {border-bottom: 1px solid;margin-bottom: 4px;border-radius: 4px;}
+.post-item {border: 1px solid;width: 80%;margin: 15px;padding: 15px;font-family: 'Alegreya Sans', sans-serif;font-size: 16px;}
+.post-button-list {display: flex;width: 100%;justify-content: flex-end;}
+.post-button {display: block;margin: 5px;}

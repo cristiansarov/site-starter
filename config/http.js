@@ -27,7 +27,17 @@ module.exports.http = {
     var express = require('express');
     var path = require('path');
     app.use(require('compression')()); // enable gzip compression
-    app.use('/admin', express.static(path.join(__dirname, '../../admin/dist')));
+
+    // ADMIN
+    app.use('/admin/', express.static(path.join(__dirname, '../admin/dist/'), {maxage: '30d'})); // static files
+    app.get('/admin**', (req, res) => { // the rest of routes
+      res.sendfile(path.join(__dirname, '../admin/dist/'));
+    });
+
+    // REGULAR SITE
+    app.use('/', express.static(path.join(__dirname, '../../front/dist'), {maxage: '30d'}));
+
+    // ADD CACHE TO ASSETS AND IMAGES
     app.use(function (req, res, next) { // add cache to assets
       if (req.url.indexOf('/assets/') === 0 || req.url.indexOf('/images/') === 0) {
         res.setHeader('Cache-Control', 'public, max-age=2592000');
@@ -35,7 +45,6 @@ module.exports.http = {
       }
       next();
     });
-    app.use('/', express.static(path.join(__dirname, '../../front/dist')));
   },
 
   middleware: {

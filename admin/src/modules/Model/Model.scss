@@ -1,0 +1,25 @@
+@import '../../Main/variables';
+
+.column-checkbox {
+  width: 1px;
+  text-align: center;
+}
+
+.column-image {
+  width: 1px;
+  text-align: center;
+  img, .image {
+    display: block;
+    margin: -8px 0;
+    width: 36px;
+  }
+}
+.column-actions {
+  width: 1px;
+  white-space: nowrap;
+}
+
+.column-boolean {
+  width: 1px;
+  text-align: center;
+}

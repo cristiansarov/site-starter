@@ -1,0 +1,7 @@
+.page-header {
+  & {background: #F8FAFB url('./assets/header-bg.png') repeat;background-size: 1040px;margin: 0;padding: 0;border: 0;}
+  &>.container {display: flex;align-items: center;height: 160px;}
+  & h1 {margin: 0;font-family: Ubuntu, sans-serif;text-transform: uppercase;color: #9EC023;font-size: 24px;letter-spacing: 2px;flex-grow: 1;}
+  & .ph-image {width: 200px;}
+  & .ph-image>.image {padding-top: 33%;background-size: 125px;background-color: #fff;border-radius: 10px;border: 1px solid #b5bcce;}
+}

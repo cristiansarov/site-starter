@@ -1,0 +1,42 @@
+@import '../variables';
+
+
+// resets
+ul {
+  padding: 0;
+  margin: 0;
+}
+a {
+  &, &:hover, &:active, &:focus {
+    text-decoration: none;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  a {
+    color: inherit;
+  }
+}
+fieldset {
+  border: none;
+}
+
+
+// main
+body {
+  background: #2f373e;
+  font-family: Oswald, sans-serif;
+}
+.image {
+  background-size: cover;
+  background-position: center;
+  padding-top: 100%;
+}
+
+
+// Layout
+.layout {
+  &__content {
+    padding: 30px;
+    background: #fff;
+  }
+}

@@ -17,7 +17,7 @@ module.exports.session = {
 
   // secret: '8abc300ad1092abed1fd6ac2e187996f',
 
-  adapter: 'mongo',
+  // adapter: 'connect-mongo',
   host: 'localhost',
   port: 27017,
   // db: 'sessionContainer',

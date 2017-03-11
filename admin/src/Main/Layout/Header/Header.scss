@@ -1,0 +1,36 @@
+@import '../../variables';
+
+.header-top {
+  color: #fff;
+  margin: 30px 0;
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    font-size: 30px;
+    flex-grow: 1;
+  }
+}
+
+.header-navigation {
+  .navigation {
+    display: flex;
+    li {
+      position: relative;
+      &:not(:last-child) {
+        margin-right: 3px;
+      }
+      a {
+        background: #ccc;
+        display: block;
+        color: #000;
+        padding: 6px 10px;
+        font-size: 16px;
+        &.active {
+          background: #fff;
+        }
+      }
+    }
+  }
+}
