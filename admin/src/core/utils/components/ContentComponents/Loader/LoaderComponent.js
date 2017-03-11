@@ -37,7 +37,7 @@ export default class LoaderComponent extends Component {
     };
 
     // ACTIONS
-    $parent.css({minHeight: minHeight}).addClass('position-relative'); // adds the element's container position:relative css class
+    $parent.css({minHeight: minHeight, position: 'relative'}); // adds the element's container position:relative css class
     onChange();
     $(window).scroll(onChange);
     $(window).resize(onChange);

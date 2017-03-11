@@ -4,13 +4,15 @@ import {getPagedList, resetPagedList, deleteItems} from './ModelActions'
 import {Link} from 'react-router';
 import DefaultList from './templates/defaultList/ModelDefaultListTemplate';
 import ImageList from './templates/imageList/ModelImageListTemplate';
-import {getModelPrimaryKey} from 'helpers';
+import {getModelPrimaryKey, listenToLocation} from 'core/utils/helpers';
+import {Loader} from 'core/utils/components/ContentComponents';
 
 
 @connect((state, props)=>({
   list: state.model.pagedList[props.params.modelName],
   loading: state.model.listLoading,
   models: state.main.models,
+  query: state.main.location.query
 }), {
   getPagedList,
   resetPagedList,
@@ -25,13 +27,9 @@ export default class ModelListScreen extends React.Component {
     const {params: {modelName}} = this.props;
     this.modelName = modelName;
     this.getPagedList();
-    this.unlistenRouteChange = this.context.router.listen(location=>{
-      if(this.props.location.query != location.query) {
-        setTimeout(()=>{
-          if(this.modelName) this.getPagedList(this.modelName);
-        });
-      }
-    })
+    this.unlistenRouteChange = listenToLocation(()=>{
+      this.getPagedList(this.modelName);
+    }, this)
   }
   getPagedList() {
     const {location: {query}, getPagedList} = this.props;
@@ -44,19 +42,16 @@ export default class ModelListScreen extends React.Component {
     return (
       <div>
 
-        <h2>List {listTemplate}</h2>
+        <h2>List {listTemplate} <Link className="button" to={{name: 'ModelAdd', params: {modelName: this.modelName}}}>Add</Link></h2>
 
-        {listTemplate == 'image' ? (
-          <ImageList checked={checked} modelName={this.modelName} getList={this.getPagedList.bind(this)} checkAll={this.checkAll.bind(this)} checkOne={this.checkOne.bind(this)} />
-        ) : (
-          <DefaultList checked={checked} modelName={this.modelName} getList={this.getPagedList.bind(this)} checkAll={this.checkAll.bind(this)} checkOne={this.checkOne.bind(this)} deleteItems={this.deleteItems.bind(this)} />
-        )}
-
-        { loading && (
-          <div>
-            Loading...
-          </div>
-        ) }
+        <div>
+          {listTemplate == 'image' ? (
+            <ImageList checked={checked} modelName={this.modelName} getList={this.getPagedList.bind(this)} checkAll={this.checkAll.bind(this)} checkOne={this.checkOne.bind(this)} />
+          ) : (
+            <DefaultList checked={checked} modelName={this.modelName} getList={this.getPagedList.bind(this)} checkAll={this.checkAll.bind(this)} checkOne={this.checkOne.bind(this)} deleteItems={this.deleteItems.bind(this)} />
+          )}
+          { loading && <Loader /> }
+        </div>
 
       </div>
     )

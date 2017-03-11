@@ -53,6 +53,7 @@
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^3.0.1",
     "core-js": "^2.0.0",
+    "debounce": "^1.0.0",
     "draft-js": "^0.10.0",
     "draft-js-export-html": "^0.5.2",
     "draft-js-image-plugin": "^2.0.0-beta1",

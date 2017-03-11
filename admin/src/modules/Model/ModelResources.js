@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export function getPagedListResource(modelName, {page=1, perPage=5, populate, ...where}) {
+export function getPagedListResource(modelName, {page=1, perPage=10, sort, ...where}) {
   return axios({
     method: 'GET',
     url: `${modelName}/list/paged`,
-    params: { page, perPage, populate: JSON.stringify(populate), where: JSON.stringify(where) }
+    params: { page, perPage, sort, where: JSON.stringify(where) }
   })
 }
 

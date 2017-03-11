@@ -3,17 +3,18 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {deleteItem} from '../../ModelActions';
 import {I18n} from 'react-redux-i18n';
-import {imageUrl} from 'core/utils/filters';
+import {imageUrl, highlight} from 'core/utils/filters';
 import {getModelPrimaryKey} from 'core/utils/helpers';
 import classnames from 'classnames';
 
 
 @connect(state=>({
-  models: state.main.models
+  models: state.main.models,
+  query: state.main.location.query
 }), {
   deleteItem
 })
-export default class ModelListItemTemplate extends React.Component {
+export default class ModelDefaultListItemContentTemplate extends React.Component {
   render() {
     const {item, k, isChecked, modelName, models, checkOne} = this.props;
     const columns = models[modelName].structure.list;
@@ -35,7 +36,7 @@ export default class ModelListItemTemplate extends React.Component {
     return classnames(`column-${models[modelName].fields[columnName].config.list.template}`)
   }
   renderColumn(columnName) {
-    const {item, modelName, models} = this.props;
+    const {item, modelName, models, query} = this.props;
     const fieldConfig = models[modelName].fields[columnName].config.list;
     const column = item[columnName];
     switch(fieldConfig.template) {
@@ -43,7 +44,7 @@ export default class ModelListItemTemplate extends React.Component {
         return I18n.t(`choice.${column}`)
       }
       case 'boolean': {
-        return column && <i className="fa fa-check" />
+        return <i className={`fa fa-${column ? 'check' : 'ban'}`} />
       }
       case 'modelCount': {
         return column && column.length;
@@ -52,7 +53,7 @@ export default class ModelListItemTemplate extends React.Component {
         return <img src={column ? imageUrl(column.filename, 'thumb') : require('../../../../Main/Layout/assets/images/placeholder/user.svg')} />;
       }
       default: {
-        return typeof column == 'string' ? column : JSON.stringify(column);
+        return typeof column == 'string' ? <span dangerouslySetInnerHTML={{__html: highlight(column, query[columnName])}} /> : JSON.stringify(column);
       }
     }
   }
