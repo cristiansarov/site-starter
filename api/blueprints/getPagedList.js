@@ -23,7 +23,7 @@ module.exports = function(req, res) {
   if(model.structure.list) findQuery.select = [model.config.primaryKey].concat(model.structure.list);
 
 
-  Model.pagify('data', {
+  Model.pagify('list', {
     findQuery: findQuery,
     sort: sort ? sort.split(',') : undefined,
     populate: model.config.list.populate,
