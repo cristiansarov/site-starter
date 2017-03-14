@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
         listLoading: false,
         pagedList: {
           ...state.pagedList,
-          [action.meta.modelName]: action.payload.data.data
+          [action.meta.modelName]: action.payload.data.list
         },
         totalPages: {
           ...state.totalPages,
