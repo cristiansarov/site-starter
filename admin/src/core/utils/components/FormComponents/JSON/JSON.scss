@@ -1,0 +1,9 @@
+.form-json {
+  .item {
+    display: flex;
+    margin: 10px 0;
+    &>* {
+      width: 50%;
+    }
+  }
+}

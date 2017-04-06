@@ -1,0 +1,15 @@
+.form-slug {
+  display: flex;
+  align-items: flex-end;
+  &>*:first-child {
+    margin-bottom: 2px;
+    color: #999;
+  }
+  &>*:last-child {
+    flex-grow: 1;
+  }
+  input {
+    border-width: 0 0 1px 0;
+    outline: none;
+  }
+}

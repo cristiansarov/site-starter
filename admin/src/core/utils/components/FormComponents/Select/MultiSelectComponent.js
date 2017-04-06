@@ -1,7 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Select from 'react-select';
 import { I18n } from 'react-redux-i18n';
-import {connect} from 'react-redux';
 
 
 
@@ -20,7 +20,7 @@ export default class MultiSelectComponent extends React.Component {
     } else if(models && config.model) {
       configOptions = list;
       props.labelKey = models[config.model].config.defaultField;
-      props.valueKey = 'id';
+      props.valueKey = models[config.model].config.primaryKey;
     }
     return (
       <Select {...props} multi={true} options={configOptions} onBlur={()=>{}} />

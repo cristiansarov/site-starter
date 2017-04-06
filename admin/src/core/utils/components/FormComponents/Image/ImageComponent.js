@@ -8,7 +8,6 @@ import {toastr} from 'react-redux-toastr';
 export default class ImageComponent extends React.Component {
   render() {
     const { config, ...props } = this.props;
-    console.log('props', props)
 
     const dropzoneConfig = {
       disableClick: true,
@@ -38,8 +37,6 @@ export default class ImageComponent extends React.Component {
 
   onDrop(files, rejectedFiles) {
     const {onChange} = this.props;
-    console.log('files', files);
-    console.log('rejectedFiles', rejectedFiles);
     const file = files[0];
     onChange({
       id: new Date().getTime(),
@@ -52,7 +49,6 @@ export default class ImageComponent extends React.Component {
       })
       .catch(function (err) {
         toastr.error('Upload failed', 'See console for more details.')
-        console.log('NOOO fost uploadat', err)
       });
   }
 }

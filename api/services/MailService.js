@@ -1,25 +1,27 @@
 module.exports = {
-  sendMail: function(options, success, error) {
+  sendMail: function(options) {
+    return new Promise((resolve, reject) => {
+      const from = options.from || 'Site starter <no-reply@site-starter.com>';
+      const to = options.to;
+      const subject = options.subject;
+      const html = options.content;
 
-    var from = options.from || sails.config.site.name+' <'+sails.config.email.from+'>';
-    var to = options.to;
-    var subject = options.subject;
-    var html = options.content;
-    if(to && subject && html) {
+      if(!sails.config.email) return reject('No email transport is configured.');
+
+      if(!to || !subject || !html) {
+        const fields = [];
+        if(!to) fields.push('"to"');
+        if(!subject) fields.push('"subject"');
+        if(!html) fields.push('"content"');
+        return reject('The following fields are missing: '+fields.join(', '));
+      }
+
       require('nodemailer').createTransport(sails.config.email).sendMail({from: from, to: to, subject: subject, html: html},
         function(err) {
-          if(err) {
-            console.log(err)
-            error(err);
-          } else success();
+          if(err) reject(err);
+          resolve();
         });
-    } else {
-      var fields = [];
-      if(!to) fields.push('"to"');
-      if(!subject) fields.push('"subject"');
-      if(!html) fields.push('"content"');
-      return error('The following fields are missing: '+fields.join(', '));
-    }
 
+    })
   }
 };

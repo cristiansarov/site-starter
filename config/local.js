@@ -27,6 +27,10 @@
  * http://sailsjs.org/#!/documentation/anatomy/myApp/config/local.js.html
  */
 
+
+const path = require('path');
+
+
 module.exports = {
 
   /***************************************************************************
@@ -81,5 +85,7 @@ module.exports = {
    ***************************************************************************/
 
    // environment: process.env.NODE_ENV || 'development'
+
+    sitePath: process.env.sitePath ? path.join(__dirname, '../../', process.env.sitePath) : path.join(__dirname, '../../../')
 
 };

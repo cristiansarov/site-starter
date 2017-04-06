@@ -11,13 +11,15 @@
 
 module.exports.bootstrap = function(cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+  // wrap waterline query method to return a promise
+  const Promise = require('bluebird');
+  Object.keys(sails.models).forEach(function (key) {
+    if (sails.models[key].query) {
+      sails.models[key].query = Promise.promisify(sails.models[key].query);
+    }
+  });
 
   GenerateInitialData().then(function () {
-    console.log('secret', sails.config.session.secret)
-    console.log('db', sails.config.session.db)
-    console.log('collection', sails.config.session.collection)
     cb();
   });
 

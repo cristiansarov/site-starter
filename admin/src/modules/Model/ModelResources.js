@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function getPagedListResource(modelName, {page=1, perPage=10, sort, ...where}) {
+export function getPagedListResource(modelName, {page=1, perPage=30, sort, ...where}) {
   return axios({
     method: 'GET',
     url: `${modelName}/list/paged`,

@@ -2,7 +2,6 @@ var path = require('path');
 var sharp = require('sharp');
 var $q = require('q');
 var imageResize = require('./Image/ImageResize');
-var watermarkImage = require('./Image/ImageWatermark');
 var imageMinify = require('./Image/ImageMinify');
 var getOriginalFilename = require('./Image/getOriginalFilename');
 var uploadsPath = typeof sails != 'undefined' ? sails.config.uploadsPath : '';
@@ -46,7 +45,7 @@ module.exports = {
     // upload the image from request
     req.file('image').upload({
       dirname: uploadsPath,
-      maxBytes: 2 * 1024 * 1024 // MB
+      maxBytes: 10 * 1024 * 1024 // MB
     }, function (err, uploadedFiles) {
       if (err) return res.negotiate(err);
       if (uploadedFiles.length === 0) return res.badRequest('No file was uploaded');

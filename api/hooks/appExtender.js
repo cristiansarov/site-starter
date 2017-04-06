@@ -2,19 +2,17 @@ const path = require('path');
 
 module.exports = function (sails) {
   const loader = require('sails-util-mvcsloader')(sails);
-  let rootPath;
-  if(sails.config.site) rootPath = path.join(__dirname, '../../../'+sails.config.site);
-  else rootPath = path.join(__dirname, '../../../../');
+  const sitePath = sails.config.sitePath;
   loader.configure({
-    config: path.join(rootPath, '/config'),
-    policies: path.join(rootPath, '/api/policies')
+    config: path.join(sitePath, '/config'),
+    policies: path.join(sitePath, '/api/policies')
   });
   return {
     initialize: function (next) {
       loader.inject({
-        controllers: path.join(rootPath, '/api/controllers'),
-        models: path.join(rootPath, '/api/models'),
-        services: path.join(rootPath, '/api/services')
+        controllers: path.join(sitePath, '/api/controllers'),
+        models: path.join(sitePath, '/api/models'),
+        services: path.join(sitePath, '/api/services')
       }, function (err) {
         return next(err);
       });

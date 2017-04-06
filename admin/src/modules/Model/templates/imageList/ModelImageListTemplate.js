@@ -27,7 +27,7 @@ export default class ModelImageListTemplate extends React.Component {
     const {checked, list, deleteItems, modelName} = this.props;
     const dropzoneConfig = {
       disableClick: true,
-      maxSize: 2 * 1024 * 1024,
+      maxSize: 10 * 1024 * 1024,
       onDrop: this.onDrop.bind(this),
       style: {},
       activeClassName: 'active'
@@ -70,7 +70,6 @@ export default class ModelImageListTemplate extends React.Component {
       uploadImage(file)
         .then(function (res) {
           // replaceItemInList()
-          console.log('o fost uploadat', res)
         })
         .catch(function (err) {
           this.setState({
@@ -79,7 +78,6 @@ export default class ModelImageListTemplate extends React.Component {
               file
             ]
           });
-          console.log('NOOO fost uploadat', err)
         });
     });
     this.setState({

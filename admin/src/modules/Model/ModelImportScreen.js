@@ -136,7 +136,7 @@ export default class ModelImportScreen extends React.Component {
       if(Object.keys(results).length) {
         this.setState({sheetName: Object.keys(results)[0]});
       }
-      console.log('results', results); // TODO: remove
+      // console.log('results', results); // TODO: remove
     };
   }
 
@@ -305,11 +305,11 @@ export default class ModelImportScreen extends React.Component {
         }
       });
     });
-    console.log('invalidItems', [...invalidItems]);
+    // console.log('invalidItems', [...invalidItems]);
 
     // check for duplicate on server
     axios.post('/import/check', {model: modelName, unique: uniqueFields, submodel: submodelFields}).then(function(response) {
-      console.log('response check', response);
+      // console.log('response check', response);
       validItems.forEach(function(item) {
         item.errors = {};
         _.forEach(response.data.unique, function(fieldItems, fieldName) {
@@ -328,8 +328,8 @@ export default class ModelImportScreen extends React.Component {
         else invalidItems.push(item);
       });
 
-      console.log('newItems', newItems);
-      console.log('invalidItems', invalidItems);
+      // console.log('newItems', newItems);
+      // console.log('invalidItems', invalidItems);
       cb(newItems, invalidItems);
     });
 
@@ -392,9 +392,9 @@ export default class ModelImportScreen extends React.Component {
     const start = this.page * this.perChunk;
     const end = (this.page+1) * this.perChunk;
     const chunkItems = allItems.slice(start, end);
-    console.log('chunkItems', chunkItems);
+    // console.log('chunkItems', chunkItems);
     axios.post(`/${modelName}/import`, {items: chunkItems}).then(response => {
-      console.log('response', response);
+      // console.log('response', response);
       this.setState({successCount: this.state.successCount + response.data.successCount});
       this.page++;
       if(allItems[this.page * this.perChunk]) setTimeout(this.sendChunk, 1000, allItems);

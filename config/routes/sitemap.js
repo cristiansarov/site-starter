@@ -1,29 +1,29 @@
-var generateXmlLine = function (url, frequency, priority) {
+const generateXmlLine = function (url, frequency, priority) {
   if (typeof url === 'undefined') return;
   if (!frequency) frequency = 'monthly';
   if (!priority) priority = '1.0';
   return '<url><loc>' + url + '</loc><changefreq>' + frequency + '</changefreq><priority>' + priority + '</priority></url>';
 };
 
-// TODO: generate for pagination too.
-module.exports.generate = function (req, res) {
 
+module.exports.default = function (req, res, next) {
+  if(!(sails.config.sitemap && sails.config.sitemap.routes)) return next();
+
+
+  const routes = sails.config.sitemap.routes;
   const baseUrl = req.baseUrl;
-  var output = '';
-  var routeModels = [];
-  var routeModelItems = {};
-  const routes = require('../../../front/src/core/config/routes').default.childRoutes;
+  const routeModelItems = {};
   const path = require('path');
   const applyParams = require('react-router-sitemap').paramsApplier;
 
 
   // Get model routes
+  const routeModels = [];
   routes.forEach(function(route) {
     findRouteModels(route);
   });
-
   function findRouteModels(route) {
-    if(route.model) routeModels.push(route.model)
+    if(route.model) routeModels.push(route.model);
     if(route.childRoutes) route.childRoutes.forEach(function (route) {
       findRouteModels(route);
     });
@@ -31,18 +31,20 @@ module.exports.generate = function (req, res) {
 
 
   // If there route models, get the data, then generate and send
+  let output = '';
   if(routeModels.length) {
     Promise.all(routeModels.map(function(model) {
-      return sails.models[model.name].find({select: [model.param]});
+      return sails.models[model.name].find({select: [model.dbParam], limit: 9999});
     })).then(function(data) {
       data.forEach(function(items, k) {
-        routeModelItems[routeModels[k].name] = items;
+        routeModelItems[routeModels[k].name] = items.map(item => {
+          const {param, dbParam} = routeModels[k];
+          return {[param]: item[dbParam]};
+        });
       });
       generateAndSend();
     });
   } else generateAndSend(); // else just generate and send
-
-
   function generateAndSend() {
 
     // Start Generating
@@ -54,15 +56,19 @@ module.exports.generate = function (req, res) {
     // Generate XML Loop function
     function generateXml(baseUrl, route) {
       if(!route.model) { // if there is static url
-        var url = path.join(baseUrl, route.path);
-        output += generateXmlLine(url);
+        const url = path.join(baseUrl, route.path);
+        if(route.path!='*') {
+          output += generateXmlLine(url);
+        }
         if(route.childRoutes) route.childRoutes.forEach(function (route) {
           generateXml(url, route);
         });
       } else { // if there is a model url
         var applyConfig = {[route.path]: JSON.parse(JSON.stringify(routeModelItems[route.model.name])) };
         applyParams([route.path], applyConfig).forEach(function(url) {
-          output += generateXmlLine(path.join(baseUrl, url));
+          if(url!='*') {
+            output += generateXmlLine(path.join(baseUrl, url));
+          }
         });
       }
     }

@@ -38,7 +38,6 @@ export default class ModelImportConfigRow extends React.Component {
         const formatList = this[config.template=='time' ? 'timeFormatList' : 'dateFormatList'].map(i=>i.value);
         const defaultValue = moment(importItems[sheetName][1][fieldName], formatList).creationData().format;
         if(defaultValue) {
-          console.log('defaultValue', config.template=='time' ? 'timeFormat' : 'dateFormat', defaultValue)
           setTimeout(()=>{
             setFilter(config.template=='time' ? 'timeFormat' : 'dateFormat', defaultValue)
           })

@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import Datetime from 'react-datetime';
 import moment from 'moment';
 import {Link} from 'react-router';
+import Slug from './FormComponents/Slug/SlugComponent';
 import Wysiwyg from './FormComponents/Wysiwyg/WysiwygComponent';
 import Checkbox from './FormComponents/Checkbox/CheckboxComponent';
 import Select from './FormComponents/Select/SelectComponent';
@@ -23,13 +24,15 @@ export { Select };
  */
 export class Field extends Component {
 
-  renderFieldGroup({ input, name, type, label, placeholder, onClick, disabled, className, meta: { touched, error }, config={}, ...other }) {
+  renderFieldGroup({ input, name, type, label, placeholder, onClick, disabled, className, meta: { touched, error, form }, config={}, ...other }) {
 
     input.placeholder = placeholder;
     input.className = classnames('form-field', className);
     input.onClick = onClick;
     input.disabled = disabled;
     input.readOnly = config.readOnly;
+    input.onBlur = ()=>{};
+    other.onBlur = ()=>{};
 
 
     return (
@@ -47,6 +50,7 @@ export class Field extends Component {
       type = type || inputTypes[0];
       if (inputTypes.includes(type)) return <input type={type} {...input} {...other} />; // for all fields in inputFields constant
       else if (type == 'textarea') return <textarea {...input} />;
+      else if (type == 'slug') return <Slug {...input} {...other} form={form} />;
       else if (type == 'wysiwyg') return <Wysiwyg {...input} />;
       else if (type == 'select') return <Select {...input} {...other} config={config} />;
       else if (type == 'checkbox') return <Checkbox {...input} {...other} config={config} />;

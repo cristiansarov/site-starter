@@ -16,17 +16,6 @@ if (args._.length > 0 && args._.indexOf('start') !== -1) {
 process.env.REACT_WEBPACK_ENV = env;
 
 
-const sitePort = {
-  brainconcert: {
-    port: 8001,
-    proxyPort: 9001
-  },
-  knolyx: {
-    port: 8002,
-    proxyPort: 9002
-  }
-};
-
 
 /**
  * Build the webpack configuration
@@ -39,8 +28,8 @@ const config = {
   srcPath: path.join(__dirname, '../src'),
   //host: require('ip').address(),
   host: 'localhost',
-  port: sitePort[args.site] ? sitePort[args.site].port : 8000,
-  proxyPort: sitePort[args.site] ? sitePort[args.site].proxyPort : 9000,
+  port: args.port || 8001,
+  proxyPort: args.proxyPort || 9000,
   additionalPaths: []
 };
 

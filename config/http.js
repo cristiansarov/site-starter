@@ -24,27 +24,29 @@ module.exports.http = {
 
 
   customMiddleware: function (app) {
-    var express = require('express');
-    var path = require('path');
+    const express = require('express');
+    const path = require('path');
+    const sitePath = sails.config.sitePath;
+
+    // CONFIG
+    app.set('views', path.join(sitePath, '/src'));
     app.use(require('compression')()); // enable gzip compression
-
-    // ADMIN
-    app.use('/admin/', express.static(path.join(__dirname, '../admin/dist/'), {maxage: '30d'})); // static files
-    app.get('/admin**', (req, res) => { // the rest of routes
-      res.sendfile(path.join(__dirname, '../admin/dist/'));
+    app.use(function (req, res, next) { // add favicon
+      if (req.url === '/favicon.ico') return res.send(200);
+      next();
     });
-
-    // REGULAR SITE
-    app.use('/', express.static(path.join(__dirname, '../../front/dist'), {maxage: '30d'}));
-
-    // ADD CACHE TO ASSETS AND IMAGES
     app.use(function (req, res, next) { // add cache to assets
-      if (req.url.indexOf('/assets/') === 0 || req.url.indexOf('/images/') === 0) {
+      if (req.url.indexOf('/assets/') === 0 || req.url.indexOf('/images/') === 0 || req.url.indexOf('/app.') === 0) {
         res.setHeader('Cache-Control', 'public, max-age=2592000');
         res.setHeader('Expires', new Date(Date.now() + 2592000000).toUTCString());
       }
       next();
     });
+
+    // ASSETS
+    app.use('/admin/', express.static(path.join(__dirname, '../admin/dist/'), {maxage: '30d'})); // static files
+    app.use('/', express.static(path.join(sitePath, 'dist/'), {maxage: '30d'}));
+
   },
 
   middleware: {

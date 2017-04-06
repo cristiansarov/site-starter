@@ -11,7 +11,8 @@ require('../core/utils/components/native.scss');
 
 @connect(state=>({
   validation: state.modal.config && state.modal.config.validation,
-  models: state.main.models
+  models: state.main.models,
+  currentUserId: state.security.currentUser.id
 }), {
   getModelsConfig,
   setRouterParams
@@ -21,13 +22,18 @@ export default class MainComponent extends Component {
     router: React.PropTypes.object.isRequired
   };
   componentWillMount() {
-    this.props.getModelsConfig();
+    const {currentUserId, getModelsConfig} = this.props;
+    if(currentUserId) getModelsConfig();
     this.setParams();
     this.context.router.listen(()=>{
       setTimeout(() => {
         this.setParams();
       })
     })
+  }
+  componentWillUpdate(nextProps) {
+    const {currentUserId, getModelsConfig, models} = nextProps;
+    if(currentUserId && !models) getModelsConfig();
   }
   setParams() {
     const { location, params, routes, routeParams, setRouterParams } = this.props;
@@ -40,8 +46,8 @@ export default class MainComponent extends Component {
     });
   }
   render() {
-    const {models, children} = this.props;
-    if(!models) return null;
+    const {models, children, location} = this.props;
+    if(!models && !['login'].includes(location.pathname)) return null;
     return children;
   }
 }

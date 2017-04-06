@@ -2,9 +2,9 @@ const path = require('path');
 const routes = {};
 
 // Generated assets
-routes['/sitemap.xml'] =                                    require('./routes/sitemap').generate;
-routes['/robots.txt'] =                                     require('./routes/robots').default;
-routes['/config.js'] =                                      'ConfigController.getMainConfig';
+routes['GET /sitemap.xml'] =                                    require('./routes/sitemap').default;
+routes['GET /robots.txt'] =                                     require('./routes/robots').default;
+routes['GET /config.js'] =                                      'ConfigController.getMainConfig';
 
 
 /**
@@ -19,6 +19,14 @@ routes['POST /api/security/password-reset-step-2'] =        'AuthController.pass
 
 
 /**
+ * CONFIG
+ */
+routes['GET  /api/config/getMainConfig'] =                  'ConfigController.getMainConfig';
+routes['GET  /api/config/models'] =                         'ConfigController.models';
+routes['GET  /api/config/mainMenu'] =                       'ConfigController.mainMenu';
+
+
+/**
  * IMAGE
  */
 routes['POST /api/image/upload'] =                          'ImageController.upload';
@@ -29,16 +37,35 @@ routes['GET  /images/:filename'] =                          'ImageController.ser
 /**
  * ADMIN
  */
-routes['GET    /api/:modelName/list/paged'] =                require('../api/blueprints/getPagedList');
-routes['GET    /api/:modelName/list'] =                      require('../api/blueprints/getList');
-routes['GET    /api/:modelName/get/:modelId'] =              require('../api/blueprints/getItem');
-routes['POST   /api/:modelName/create'] =                    require('../api/blueprints/saveItem');
-routes['PUT    /api/:modelName/update/:modelId'] =           require('../api/blueprints/saveItem');
-routes['DELETE /api/:modelName/delete/multiple'] =           require('../api/blueprints/deleteMultiple');
-routes['DELETE /api/:modelName/delete/:modelId'] =           require('../api/blueprints/deleteItem');
-routes['POST   /api/:modelName/import'] =                    require('../api/blueprints/import');
+routes['GET    /api/:modelName/list/paged'] =                'GenericModelController.getPagedList';
+routes['GET    /api/:modelName/list'] =                      'GenericModelController.getList';
+routes['GET    /api/:modelName/get/:modelId'] =              'GenericModelController.getItem';
+routes['POST   /api/:modelName/create'] =                    'GenericModelController.saveItem';
+routes['PUT    /api/:modelName/update/:modelId'] =           'GenericModelController.saveItem';
+routes['DELETE /api/:modelName/delete/multiple'] =           'GenericModelController.deleteMultiple';
+routes['DELETE /api/:modelName/delete/:modelId'] =           'GenericModelController.deleteItem';
+routes['POST   /api/:modelName/import'] =                    'GenericModelController.importMultiple';
 routes['POST   /api/import/check'] =                         'ImportController.check';
 routes['POST   /api/import/getCategoryObjects'] =            'ImportController.getCategoryObjects';
+
+
+/**
+ * OTHER
+ */
+// MailChimp
+routes['POST   /api/mailchimp/subscribe/:list'] =             'MailChimpController.subscribe';
+
+
+/**
+ * MAIN ENTRIES
+ */
+
+routes['GET /admin*'] = (req, res) => {
+  res.sendfile(path.join(__dirname, '../admin/dist/'));
+};
+routes['GET /*']      = (req, res) => {
+  require(path.join(sails.config.sitePath, 'dist/index')).route(req, res)
+};
 
 
 module.exports.routes = routes;
