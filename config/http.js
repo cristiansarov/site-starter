@@ -51,7 +51,11 @@ module.exports.http = {
 
   middleware: {
 
-
+    redirects: function (req, res, next) {
+      if(sails.config.redirects) {
+        sails.config.redirects.middleware(req, res, next);
+      } else next();
+    },
     passportInit: require('passport').initialize(),
     passportSession: require('passport').session(),
 
