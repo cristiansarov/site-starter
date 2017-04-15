@@ -5,7 +5,9 @@ module.exports = {
         crud: {create: false},
         list: {
             template: 'image',
-            defaultQuery: {resizeName: 'original'}
+            defaultQuery: {
+              resizeName: 'original'
+            }
         }
     },
 

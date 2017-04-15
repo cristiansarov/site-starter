@@ -1,6 +1,6 @@
 {
   "name": "site-starter",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "description": "A NodeJS based api with a ReactJS for admin panel and SailsJS for the api",
   "keywords": [],
   "dependencies": {
@@ -14,7 +14,8 @@
     "fake-style-loader": "^1.0.1",
     "history": "^4.6.1",
     "imagemin": "^5.2.2",
-    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "imagemin-optipng": "^5.2.1",
     "imagemin-pngquant": "^5.0.0",
     "include-all": "^1.0.0",
     "nodemailer": "^3.1.8",

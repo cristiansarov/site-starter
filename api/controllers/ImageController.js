@@ -112,15 +112,14 @@ module.exports = {
 
             // check if the image sizes are the same
             if (true && image.imageSize == resizeConfig.width + 'x' + resizeConfig.height) {
+
               fileAdapter
                 .read(path.join(uploadsPath, image.path))
                 .on('error', function () {
 
                   // if the file doesn't exist, generate the file again
-                  imageResize(res, originalImage.path, resizeName, function (newImagePath, imageSize) {
-                    fileAdapter.read(path.join(uploadsPath, newImagePath)).on('error', function (err) {
-                      return res.serverError(err); // server error if the image has not been saved properly
-                    }).pipe(res); // else pipe the image into result
+                  imageResize(res, originalImage.path, resizeName, function (newImagePath) {
+                    fileAdapter.read(path.join(uploadsPath, newImagePath)).pipe(res);
                   });
 
                 })
@@ -129,13 +128,10 @@ module.exports = {
 
             // if not, resize, and update the image details in database
             else {
-              console.log('resizing');
               imageResize(res, originalImage.path, resizeName, function (newImagePath, imageSize) {
                 Image.update(image.id, {imageSize: imageSize}).exec(function (err) {
                   if (err) return res.negotiate(err);
-                  fileAdapter.read(path.join(uploadsPath, newImagePath)).on('error', function (err) {
-                    return res.serverError(err); // server error if the image has not been saved properly
-                  }).pipe(res); // else pipe the image into result
+                  fileAdapter.read(path.join(uploadsPath, newImagePath)).pipe(res);
                 });
               });
             }
@@ -144,7 +140,7 @@ module.exports = {
           // if the image size is not generated and needs to be generated
           else {
             imageResize(res, originalImage.path, resizeName, function (newImagePath, imageSize) {
-              var imageFields = {
+              const imageFields = {
                 parentId: originalImage.id,
                 resizeName: resizeName,
                 path: newImagePath,

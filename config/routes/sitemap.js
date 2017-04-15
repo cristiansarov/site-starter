@@ -11,7 +11,7 @@ module.exports.default = function (req, res, next) {
 
 
   const routes = sails.config.sitemap.routes;
-  const baseUrl = req.baseUrl;
+  const baseUrl = sails.config.publicUrl;
   const routeModelItems = {};
   const path = require('path');
   const applyParams = require('react-router-sitemap').paramsApplier;
@@ -56,7 +56,7 @@ module.exports.default = function (req, res, next) {
     // Generate XML Loop function
     function generateXml(baseUrl, route) {
       if(!route.model) { // if there is static url
-        const url = path.join(baseUrl, route.path);
+        const url = baseUrl+'/'+route.path;
         if(route.path!='*') {
           output += generateXmlLine(url);
         }
@@ -67,7 +67,7 @@ module.exports.default = function (req, res, next) {
         var applyConfig = {[route.path]: JSON.parse(JSON.stringify(routeModelItems[route.model.name])) };
         applyParams([route.path], applyConfig).forEach(function(url) {
           if(url!='*') {
-            output += generateXmlLine(path.join(baseUrl, url));
+            output += generateXmlLine(baseUrl+'/'+url);
           }
         });
       }

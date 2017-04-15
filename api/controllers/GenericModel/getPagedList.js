@@ -4,10 +4,8 @@ module.exports = function(req, res) {
   const Model = sails.models[modelName.toLowerCase()];
   const model = HelperService.getParsedModelData(Model);
 
-  const findQuery = Object.assign(
-    model.config.list.defaultQuery || {},
-    {where: where ? JSON.parse(where) : {}}
-  );
+  const findQuery = {where: where ? JSON.parse(where) : {}};
+  findQuery.where = Object.assign(findQuery.where, model.config.list.defaultQuery || {})
 
   Object.keys(findQuery.where).forEach(function (key) {
     if(model.fields[key]) {
@@ -21,7 +19,6 @@ module.exports = function(req, res) {
   });
 
   if(model.structure.list) findQuery.select = [model.config.primaryKey].concat(model.structure.list);
-
 
   Model.pagify('list', {
     findQuery: findQuery,
