@@ -1,6 +1,6 @@
 {
   "name": "site-starter",
-  "version": "1.0.48",
+  "version": "1.0.483",
   "description": "A NodeJS based api with a ReactJS for admin panel and SailsJS for the api",
   "keywords": [],
   "dependencies": {
@@ -16,7 +16,6 @@
     "imagemin": "^5.2.2",
     "imagemin-jpeg-recompress": "^5.1.0",
     "imagemin-optipng": "^5.2.1",
-    "imagemin-pngquant": "^5.0.0",
     "include-all": "^1.0.0",
     "nodemailer": "^3.1.8",
     "passport": "^0.3.2",
@@ -30,7 +29,8 @@
     "sails-mysql": "^0.11.5",
     "sails-util-mvcsloader": "^0.4.0",
     "sharp": "^0.17.2",
-    "skipper-disk": "^0.5.9"
+    "skipper-disk": "^0.5.9",
+    "unirest": "^0.5.1"
   },
   "scripts": {
     "debug": "node debug index.js",

@@ -5,6 +5,7 @@ module.exports = {
       const to = options.to;
       const subject = options.subject;
       const html = options.content;
+      const attachments = options.attachments;
 
       if(!sails.config.email) return reject('No email transport is configured.');
 
@@ -16,7 +17,7 @@ module.exports = {
         return reject('The following fields are missing: '+fields.join(', '));
       }
 
-      require('nodemailer').createTransport(sails.config.email).sendMail({from: from, to: to, subject: subject, html: html},
+      require('nodemailer').createTransport(sails.config.email).sendMail({from, to, subject, html, attachments},
         function(err) {
           if(err) reject(err);
           resolve();

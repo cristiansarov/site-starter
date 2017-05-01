@@ -64,7 +64,7 @@ module.exports = {
         var destroyedFilePath = path.join(sails.config.uploadsPath, destroyedFile.path);
 
         // destroy the phisical image from server if it exist
-        fs.stat(destroyedImagePath, function(err) {
+        fs.stat(destroyedFilePath, function(err) {
             if(!err) fs.unlink(destroyedFilePath);
         });
 
