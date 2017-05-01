@@ -3,14 +3,14 @@ const path = require('path');
 
 
 module.exports = {
-  uploadFile: function(req, Model, filename) {
+  uploadFile: function(req, Model, filename, maxSize = 10) {
     return new Promise((resolve, reject)=>{
       const uploadsPath = sails.config.uploadsPath;
 
       // 1. UPLOAD THE FILE
       req.file(filename).upload({
         dirname: uploadsPath,
-        maxBytes: 10 * 1024 * 1024 // MB
+        maxBytes: maxSize * 1024 * 1024 // MB
       }, function (err, uploadedFiles) {
         if (err) return reject(err);
         if (uploadedFiles.length === 0) return reject('No file was uploaded');
@@ -23,6 +23,7 @@ module.exports = {
             filename: filename,
             path: file.fd.replace(uploadsPath, ''),
             fileSize: file.size,
+            type: file.type,
             extension: extension
           };
 

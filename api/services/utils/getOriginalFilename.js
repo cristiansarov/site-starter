@@ -4,20 +4,19 @@ function checkIfImageExists(Model, filename, cb) {
   })
 }
 
-function getCopyIndex(filenameBody) {
+function getFinalFilenameBody(filenameBody) {
 
+  // test if there is and '-' character
   const indexOfLine = filenameBody.lastIndexOf('-');
-  if(indexOfLine === -1) return;
+  if(indexOfLine === -1) return filenameBody+'-c1';
 
+  // test if the character group is in correct format ('c123')
   const possibleCopyIndex = filenameBody.substring(indexOfLine+1);
-  const indexOfC = possibleCopyIndex.indexOf('c');
-  if(indexOfC !== 0) return;
+  if(!/c\d+/.test(possibleCopyIndex)) return filenameBody+'-c1';
 
-  const copyIndexString = possibleCopyIndex.substring(indexOfC+1);
-  let copyIndexInt = parseInt(copyIndexString);
-  if(copyIndexString !== copyIndexInt) return;
-
-  return ++copyIndexInt;
+  // rise the index and return the final body
+  const currentCopyIndex = parseInt(possibleCopyIndex.replace('c', ''));
+  return filenameBody.replace(possibleCopyIndex, 'c' + (currentCopyIndex + 1))
 
 }
 
@@ -25,13 +24,9 @@ function riseCopyIndex(filename) {
 
   const lastIndexOfPoint = filename.lastIndexOf('.');
   let filenameBody = filename.substring(0, lastIndexOfPoint);
+  let finalFilenameBody = getFinalFilenameBody(filenameBody);
   const extension = filename.substring(lastIndexOfPoint);
-  let copyIndex = getCopyIndex(filenameBody);
-
-  if(copyIndex) filenameBody = filenameBody.substring(0, filenameBody.lastIndexOf('-'));
-  else copyIndex = 1;
-
-  return filenameBody + '-c' + copyIndex + extension;
+  return finalFilenameBody + extension;
 
 }
 
