@@ -34,7 +34,7 @@ module.exports.default = function (req, res, next) {
   let output = '';
   if(routeModels.length) {
     Promise.all(routeModels.map(function(model) {
-      return sails.models[model.name].find({select: [model.dbParam], limit: 9999});
+      return sails.models[model.name].find({select: [model.dbParam], where: model.where || {}, limit: 9999});
     })).then(function(data) {
       data.forEach(function(items, k) {
         routeModelItems[routeModels[k].name] = items.map(item => {
