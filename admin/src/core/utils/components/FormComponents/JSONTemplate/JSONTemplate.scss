@@ -1,0 +1,21 @@
+.form-json {
+  .item {
+    display: flex;
+    margin: 10px 0;
+    &>* {
+      &:nth-child(1) {
+        min-width: 200px;
+      }
+      &:nth-child(2) {
+        flex-grow: 1;
+        min-width: 1px;
+      }
+      &:nth-child(3) {
+        white-space: nowrap;
+      }
+    }
+  }
+  .form-json {
+    margin-left: 100px;
+  }
+}

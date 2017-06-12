@@ -24,19 +24,21 @@ module.exports.http = {
 
 
   customMiddleware: function (app) {
+    const bodyParser = require('body-parser');
     const express = require('express');
     const path = require('path');
     const sitePath = sails.config.sitePath;
 
     // CONFIG
     app.set('views', path.join(sitePath, '/src'));
+    app.use(bodyParser({limit: '10mb', extended: true})); // enable gzip compression
     app.use(require('compression')()); // enable gzip compression
     app.use(function (req, res, next) { // add favicon
       if (req.url === '/favicon.ico') return res.send(200);
       next();
     });
     app.use(function (req, res, next) { // add cache to assets
-      if (req.url.indexOf('/assets/') === 0 || req.url.indexOf('/images/') === 0 || req.url.indexOf('/app.') === 0) {
+      if (req.url.indexOf('/assets/') === 0 || req.url.indexOf('/images/') === 0 || req.url.indexOf('/api/image/') === 0 || req.url.indexOf('/app.') === 0) {
         res.setHeader('Cache-Control', 'public, max-age=2592000');
         res.setHeader('Expires', new Date(Date.now() + 2592000000).toUTCString());
       }

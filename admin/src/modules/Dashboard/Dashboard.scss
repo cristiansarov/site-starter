@@ -8,7 +8,7 @@
 .current-session-manager {
   & {display:flex;align-items: center;}
   .csm-nav {
-    & {min-width:200px;font-family: Ubuntu, sans-serif;}
+    & {min-width:200px;}
     &:last-child {text-align:right;}
     button>div {display:flex;align-items: center;}
     &:last-child button>div {flex-direction: row-reverse;}

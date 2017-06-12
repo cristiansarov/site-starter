@@ -1,0 +1,117 @@
+.article {
+  border: 1px solid #009FDB;
+  padding: 20px 15px 5px 0;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 70px;
+  .article-helper-white {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    div {
+      background: url('./assets/helper-white.svg') no-repeat center left;
+      background-size: contain;
+      height: 100%;
+      width: 250px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+    }
+  }
+  .article-helper-blue {
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    div {
+      background: url('./assets/helper-blue.svg') no-repeat center left;
+      background-size: contain;
+      height: 100%;
+      width: 250px;
+      position: absolute;
+      top: 0;
+      left: 1px;
+    }
+  }
+
+  .article-meta {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .article-meta h3 {
+    text-transform: none;
+    font-size: 24px;
+    margin: 0 0 7px;
+  }
+
+  .article-meta h3 a {
+    color: #000;
+  }
+
+  .article-meta .edit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 18px;
+  }
+
+  .article-meta .article-date {
+    position: absolute;
+    right: 100%;
+    margin-right: 14px;
+    top: 0;
+    width: 56px;
+    text-align: center;
+    color: #bbb;
+  }
+
+  .article-meta .article-date > span {
+    display: block;
+  }
+
+  .article-meta .article-date > span:nth-child(1) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .article-meta .article-date > span:nth-child(2) {
+    font-size: 25px;
+    text-transform: uppercase;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .article-meta .article-date > span:nth-child(3) {
+    font-size: 40px;
+    line-height: 38px;
+    font-weight: 600;
+  }
+
+  .article-meta .article-author {
+    margin-bottom: -18px;
+    font-size: 14px;
+    color: #F9A950;
+    font-weight: 100;
+    width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    font-style: italic;
+    color: #757575;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+

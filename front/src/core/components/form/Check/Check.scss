@@ -1,0 +1,51 @@
+.rc-checkbox {
+  border: 1px solid #5e626f;
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  cursor: pointer;
+  &:hover {
+    border-color: #a91d21;
+    border-width: 3px;
+  }
+  &:active &-inner {
+    opacity: 0.5;
+  }
+  &-inner {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: #a91d21;
+    opacity: 0;
+    transition: opacity .15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      font-family: icomoon;
+      content: "\e964";
+      color: white;
+      font-size: 12px;
+    }
+  }
+  &-checked &-inner {
+    opacity: 1;
+  }
+  &-checked  {
+    border-color: #a91d21;
+  }
+  &-input {
+    position: absolute;
+    left: 0;
+    z-index: 9999;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

@@ -1,0 +1,66 @@
+.file-component {
+
+  .file {
+    &__empty {
+      border: none;
+      background: none;
+      color: #ADADAD;
+      padding: 5px 0;
+      cursor: pointer;
+      &>div {
+        display: flex;
+        align-items: center;
+      }
+      i {
+        background: #ccc;
+        color: #fff;
+        min-width: 30px;
+        max-width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 18px;
+        margin-right: 10px;
+      }
+      span {
+        position: relative;
+        top: -1px;
+      }
+      &:hover {
+        color: #737373;
+        i {
+          background: #909090;
+        }
+      }
+    }
+    &__ready {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      font-size: 17px;
+      padding-bottom: 2px;
+      i {
+        color: green;
+        font-size: 22px;
+        margin-right: 8px;
+      }
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      button {
+        border: none;
+        background: none;
+        margin-left: 6px;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+  .errors {
+    color: red;
+  }
+}

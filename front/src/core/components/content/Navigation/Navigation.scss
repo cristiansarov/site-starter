@@ -1,0 +1,58 @@
+.navigation {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  display: flex;
+  li {
+    display: inline-block;
+    margin: 0;
+  }
+  a {
+    display: block;
+    white-space: nowrap;
+    width: auto;
+  }
+  li {
+    position: relative;
+    width: 100%;
+  }
+  & > li {
+    width: auto;
+  }
+  ul.submenu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: 99999;
+    left: 100%;
+    top: 0;
+  }
+  & > li > ul.submenu {
+    top: 100%;
+    left: 0;
+  }
+  li.has-submenu:not(:hover) > ul.submenu {
+    transition: .1s .1s linear;
+    -webkit-transition: .1s .1s linear;
+  }
+  li.has-submenu:hover > ul.submenu {
+    transition: .1s linear;
+    -webkit-transition: .1s linear;
+    opacity: 1;
+    visibility: visible;
+  }
+  &.vertical li {
+    float: none;
+    display: block;
+  }
+  &.vertical > li > ul.submenu {
+    left: 100%;
+    top: 0;
+  }
+  &.no-hide ul.submenu {
+    display: block;
+    position: static;
+  }
+}

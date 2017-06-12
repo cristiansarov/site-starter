@@ -1,0 +1,54 @@
+.footer {background: #252625 url('./assets/footer-background.svg') no-repeat center top;background-size: 520px;color: #eee;}
+.footer h2 {text-transform: uppercase;font-weight: 600;margin: 0;}
+.footer h3 {text-transform: uppercase;font-size: 17px;font-weight: 600;}
+.footer p {font-weight: 100;}
+.footer .footer-newsletter {max-width: 360px;margin: 25px auto;position: relative;}
+.footer .footer-newsletter input {width: 100%;padding: 0 50px 0 8px;height: 44px;outline:none;color: #4C4C4C;border: none;}
+.footer .footer-newsletter button {position: absolute;top: 0;right: 0;border: none;background: #565656;height: 44px;width: 50px;font-size: 20px;}
+.footer .footer-newsletter button:hover {background:#CE6D00;}
+.footer .footer-newsletter .message {margin-top: 10px;background: rgba(255, 255, 255, 0.3);padding: 8px 12px;border: 1px solid rgba(255, 255, 255, 0.3);color: #D6D6D6;}
+.footer .footer-newsletter .message.message-error {border-color: rgba(255, 0, 0, 0.3);background: rgba(255, 221, 221, 0.3);color: #E8C6C6;}
+.footer .footer-newsletter .message.message-success {
+  border-color: rgba(54, 255, 0, 0.3);
+  background: rgba(241, 255, 221, 0.3);
+  color: #d1e8c6;
+}
+.footer .row>*:nth-child(1) {text-align:center;}
+.footer .row>*:nth-child(2) {}
+.footer .row>*:nth-child(3) {text-align:right;}
+.footer .footer-contact-details {}
+.footer .footer-contact-details>li {margin: 10px 0;}
+.footer .footer-contact-details>li>i {float: left;width: 14px;text-align: right;margin: 2px 0 2px 0;}
+.footer .footer-contact-details>li>*:not(i) {display: block;margin-left: 21px;color: #fff !important;}
+.footer .footer-contact-details>li>a:hover {color:#009FDB !important;}
+.footer .footer-logo {position:relative;margin-top: 5px;display:inline-block;}
+.footer .footer-logo>img {-webkit-transition: opacity .3s;-moz-transition: opacity .3s;-ms-transition: opacity .3s;-o-transition: opacity .3s;transition: opacity .3s;}
+.footer .footer-logo>img:nth-child(1) {height: 50px;opacity:1;position: relative;z-index:1;}
+.footer .footer-logo:hover>img:nth-child(1) {opacity:0;}
+.footer .footer-logo>img:nth-child(2) {position:absolute;left:0;top:0;opacity:.5;}
+.footer .footer-logo:hover>img:nth-child(2) {opacity:1;}
+.footer .social-icons {
+  width: 280px;
+  margin: 0 auto;
+  display: flex;
+  a {
+    font-size: 30px;
+    color: #979797;
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    text-decoration: none;
+  }
+  .icon-facebook:hover {
+    color: #3b5998;
+  }
+  .icon-linkedin:hover {
+    color: #0077b5;
+  }
+  .icon-twitter:hover {
+    color: #1da1f2;
+  }
+  .icon-google-plus:hover {
+    color: #dd4b39;
+  }
+}

@@ -1,0 +1,41 @@
+.rc-radio {
+  border: 1px solid #484c59;
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border .3s ease;
+  &:hover {
+    border-color: #777d90;
+  }
+  &:active &-inner {
+    opacity: 0.5;
+  }
+  &-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 3px;
+    background: #8ec918;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity .15s ease;
+  }
+  &-checked &-inner {
+    opacity: 1;
+  }
+  &-input {
+    position: absolute;
+    left: 0;
+    z-index: 9999;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

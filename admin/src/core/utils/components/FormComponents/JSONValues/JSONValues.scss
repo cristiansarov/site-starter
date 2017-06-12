@@ -1,0 +1,46 @@
+.json-values {
+  color: #5f7900;
+  .child {
+    margin-left: 20px;
+  }
+  .item {
+    display: flex;
+    [contenteditable] {
+      min-width: 21px;
+      border-bottom: 1px dashed #777;
+      outline: none;
+      margin: 2px 4px 0;
+      color: initial;
+      &:focus {
+        border-bottom-color: #337ab7;
+      }
+    }
+    span:last-of-type {
+      align-self: flex-end;
+      position: relative;
+      top: -3px;
+      margin-left: 1px;
+    }
+  }
+  input {
+    //border: none;
+  }
+  textarea {
+    //border: none;
+  }
+  button {
+    border: none;
+    background: none;
+    color: #337ab7;
+    outline: none;
+    &:hover {
+      color: #23527c;
+    }
+    &:before {
+      content: '['
+    }
+    &:after {
+      content: ']'
+    }
+  }
+}

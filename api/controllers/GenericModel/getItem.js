@@ -5,7 +5,7 @@ module.exports = function (req, res) {
   const Model = sails.models[modelName.toLowerCase()];
   const modelConfig = HelperService.getParsedModelData(Model).config.edit || {};
 
-  Model.findOne(modelId).populate(modelConfig.populate || []).then(data => {
+  Model.findOne(modelId).populateAll().then(data => {
     res.ok(data);
   }).catch(err => {
     res.negotiate(err);

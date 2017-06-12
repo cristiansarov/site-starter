@@ -1,3 +1,5 @@
+const getData = require('./Config/getData');
+
 module.exports = {
   getMainConfig: function (req, res) {
     const routes = [];
@@ -26,5 +28,8 @@ module.exports = {
       mainMenu.push({translate: `menu.${modelName}`, route: {name: 'Model', params: {modelName}}});
     });
     res.json(mainMenu);
-  }
+  },
+  getData
 };
+
+

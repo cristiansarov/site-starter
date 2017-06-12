@@ -24,6 +24,7 @@ routes['POST /api/security/password-reset-step-2'] =        'AuthController.pass
 routes['GET  /api/config/getMainConfig'] =                  'ConfigController.getMainConfig';
 routes['GET  /api/config/models'] =                         'ConfigController.models';
 routes['GET  /api/config/mainMenu'] =                       'ConfigController.mainMenu';
+routes['GET  /api/config/getData'] =                           'ConfigController.getData';
 
 
 /**

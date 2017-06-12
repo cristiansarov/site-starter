@@ -33,6 +33,9 @@ module.exports.models = {
     perPage: 10
   },
 
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+
   types: {
     config: function () { return true; } // for allowing config object in model definition
   }

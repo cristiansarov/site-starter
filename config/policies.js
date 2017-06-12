@@ -19,5 +19,8 @@
 
 module.exports.policies = {
   'GenericModelController': 'isAuthenticated',
-  'ConfigController': 'isAuthenticated'
+  'ConfigController': {
+    '*': 'isAuthenticated',
+    getData: true
+  }
 };

@@ -1,0 +1,119 @@
+.header {
+  padding: 30px 0;
+  background: #252625;
+  .header-logo {
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    &>img {
+      display: block;
+      height: 46px;
+      margin: -5px 0;
+    }
+  }
+  .main-menu {
+    float: right;
+    margin: -30px 0;
+    a {
+      line-height: 20px;
+      color: #4C4C4C;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    &>li>a {
+      padding: 40px 14px;
+      text-transform: uppercase;
+    }
+    .submenu {
+      border: 1px solid #ccc;
+      border-top: 0;
+      background: #fff;
+      padding: 6px 0;
+      a {
+        padding: 6px 14px;
+        font-size: 13px;
+        &:hover {
+          background-color: #F0F0F0;
+        }
+      }
+      .submenu {
+        top: -7px;
+      }
+    }
+    li {
+      position: relative;
+    }
+    &>li>a {
+      color: #DBDBDB;
+    }
+    &>li:first-child>a {
+      padding-left: 0;
+    }
+    &>li:last-child>a {
+      padding-right: 0;
+    }
+    &>li:first-child>a.active:after {
+      left: 0;
+    }
+    &>li:last-child>a.active:after {
+      right: 0;
+    }
+    &>li>ul li>a.active {
+      color: #009FDB;
+    }
+    &>li>a.active:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15px;
+      right: 15px;
+      height: 4px;
+      background: #009FDB;
+    }
+    &>li>a.active {
+      color: #009FDB;
+    }
+  }
+  .mobile-menu-button {
+    display: none;
+  }
+  @include media(tablet) {
+    text-align: center;
+    .container {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo {
+      position: static;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .main-menu {
+      display: none;
+    }
+    .mobile-menu-button {
+      display: block;
+      background: none;
+      border: none;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  @include media(phone) {
+    padding: 20px 0;
+    .header-logo > img {
+      height: 40px;
+      margin-top: -10px;
+    }
+  }
+  @include media(phone-sm) {
+    .header-logo>img {
+      height: 34px;
+    }
+  }
+}
+
+

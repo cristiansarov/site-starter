@@ -1,0 +1,36 @@
+@mixin disableSelection() {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+@mixin multiRowEllipsis($rowNumber) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $rowNumber;
+  -webkit-box-orient: vertical;
+  height: 2.1em;
+}
+
+@mixin media($media) {
+  $maxWidth: $media;
+  @if $media == desktop {
+    $maxWidth: 1199px;
+  }
+  @else if $media == tablet {
+    $maxWidth: 991px;
+  }
+  @else if $media == tablet-sm {
+    $maxWidth: 767px;
+  }
+  @else if $media == phone {
+    $maxWidth: 479px;
+  }
+  @else if $media == phone-sm {
+    $maxWidth: 419px;
+  }
+  @media only screen and (max-width: $maxWidth) { @content; }
+}

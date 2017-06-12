@@ -1,6 +1,5 @@
 import React from 'react';
 import {Field} from '../../../core/utils/components/FormComponents';
-import JSON from '../../../core/utils/components/FormComponents/JSON/JSONComponent';
 import {I18n} from 'react-redux-i18n';
 
 
@@ -9,19 +8,14 @@ export default class ModelEditTabTemplate extends React.Component {
     const {fields} = this.props;
     return (
       <div>
-        {fields.map(field => (field.template=='json' ? (
-            <JSON key={field.name}
-                  label={I18n.t(`field.${field.name}`)}
-                  {...field}
-            />
-          ) : (
-            <Field key={field.name}
-                   name={field.name}
-                   type={field.template}
-                   label={I18n.t(`field.${field.name}`)}
-                   config={field}
-            />
-          )))}
+        {fields.map(field => (
+          <Field key={field.name}
+                 name={field.name}
+                 type={field.template}
+                 label={I18n.t(`field.${field.name}`)}
+                 config={field}
+          />
+        ))}
       </div>
     )
   }

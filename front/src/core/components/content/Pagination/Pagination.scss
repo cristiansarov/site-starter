@@ -1,0 +1,34 @@
+.pagination {
+  @include disableSelection();
+  &>li {
+    &.disabled {
+      &>a, &>span {
+        color: #ccc;
+      }
+    }
+    &>a, &>span {
+      border: none;
+      background-color: #eee;
+      margin: 0 5px;
+      border-radius: 0 !important;
+      color: #555;
+      outline: none;
+    }
+    &.active {
+      &>a, &>span {
+        -webkit-transform: scale(1.2, 1.2);
+        -moz-transform: scale(1.2, 1.2);
+        -ms-transform: scale(1.2, 1.2);
+        -o-transform: scale(1.2, 1.2);
+        transform: scale(1.2, 1.2);
+        &, &:hover, &:active, &:focus {
+          color: #fff !important;
+          background: #009FDB !important;
+        }
+      }
+    }
+  }
+}
+
+
+

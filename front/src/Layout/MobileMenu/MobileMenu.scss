@@ -1,0 +1,32 @@
+.bm-menu {
+  background: #000;
+  color: #fff;
+  .navigation {
+    display: block;
+    padding: 16px 10px;
+    .submenu {
+      opacity: 1;
+      visibility: visible;
+      position: static;
+      padding-left: 20px
+    }
+    li {
+      display: block;
+      a {
+        display: block;
+        padding: 8px 12px;
+        font-size: 18px;
+        &:not(.active) {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.bm-burger-button button {
+  visibility: hidden;
+}
+
+#main {
+  position: relative;
+}

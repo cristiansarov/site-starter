@@ -68,3 +68,13 @@ export function imageUrl(filename, size) {
   if(size) return `${window.location.origin}/images/${size}/${filename}`;
   return `${window.location.origin}/images/${filename}`;
 }
+
+
+/**
+ * First Letter to LowerCase
+ * @param string
+ * @returns {string}
+ */
+export function firstLetterLowerCase(string) {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}

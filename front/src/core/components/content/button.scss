@@ -1,0 +1,11 @@
+.button {background: #009FDB;color: #fff;line-height: 20px;padding: 12px 40px;display: inline-block;border: none;border-radius: 4px;border-bottom: 2px solid rgba(0, 0, 0, 0.15);position: relative;text-transform: uppercase;font-weight: 600;font-size: 15px;outline:none !important;}
+.button:after {opacity: 0;content: "";position: absolute;top: 0;left: 0;right: 0;bottom: 0;background: rgba(255, 255, 255, 1);border-radius: inherit;z-index: 1;}
+.button[disabled]:after {opacity: 0.5;background: #C1C1C1;}
+.button:not([disabled]):hover {color:#fff;}
+.button:not([disabled]):hover:after {opacity:0.15;}
+
+.button-pink {background:#EE4A66;}
+.button-yellow {background:#F4A844;}
+.button-green {background:#8ec73f;}
+
+.button-wide {padding: 14px 70px;font-size: 16px;}

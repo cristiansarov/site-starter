@@ -1,0 +1,26 @@
+.page-header {
+  background: url('./assets/page-header-bg.jpg') no-repeat center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  .container {
+    position: relative;
+  }
+  h1 {
+    margin: 65px 0 70px;
+    text-align: center;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 34px;
+  }
+  .breadcrumbs {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    background: none;
+    z-index: 10;
+    font-style: italic;
+  }
+}
+

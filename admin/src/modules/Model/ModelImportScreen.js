@@ -170,7 +170,7 @@ export default class ModelImportScreen extends React.Component {
         // 4. Get submodels (categories)
         this.getCategories(allItems, () => {
 
-          console.log('allItems', allItems)
+          // console.log('allItems', allItems)
 
           // 5. Import items (sending chunks)
           this.perChunk = 100;

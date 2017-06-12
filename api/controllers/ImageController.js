@@ -70,13 +70,18 @@ module.exports = {
   serve: function (req, res) {
 
     var fileAdapter = require('skipper-disk')();
+    var id = req.param('id');
     var filename = req.param('filename');
     var resizeName = req.param('size') || 'original';
     var resizeConfig = sails.config.imageSizes[resizeName];
+    var where = {resizeName: 'original'};
+
+    if(id) where.id = id;
+    else if(filename) where.filename = filename;
 
 
     // find original image first
-    Image.findOne({filename: filename, resizeName: 'original'}).exec(function (err, originalImage) {
+    Image.findOne(where).exec(function (err, originalImage) {
       if (err) return res.negotiate(err);
       if (!originalImage) return res.notFound('The filename requested is invalid'); // if the requested filename is invalid
 

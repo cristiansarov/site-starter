@@ -62,5 +62,82 @@ module.exports = {
 
     return modelData;
 
+  },
+  getPageData() {
+    return new Promise((resolve, reject)=>{
+      Page.query(`
+      SELECT
+      p.id,
+      p.name,
+      p.metaTitle,
+      p.metaDescription,
+      p.breadcrumbName,
+      p.parent,
+      p.slug,
+      p.routeName,
+      pt.componentName AS componentName,
+      p.templateI18n,
+      p.redirectTo,
+      p.indexRouteName,
+      pit.componentName AS indexComponentName,
+      p.indexTemplateI18n,
+      p.sitemapModel
+      FROM page AS p
+      LEFT JOIN pagetemplate AS pt ON p.template = pt.id 
+      LEFT JOIN pagetemplate AS pit ON p.indexTemplate = pit.id
+    `).then(pages=>{
+
+        const i18nKeys = {};
+        const pagesByParent = {};
+        pages.forEach(page=>{
+          const pageParent = page.parent || '-';
+          pagesByParent[pageParent] = pagesByParent[pageParent] || [];
+          if(page.routeName) {
+            if(!['Layout', 'Home'].includes(page.routeName)) pagesByParent[pageParent].push(page);
+            const i18nRouteName = page.routeName.charAt(0).toLowerCase() + page.routeName.slice(1);
+            i18nKeys[i18nRouteName] = page.templateI18n ? JSON.parse(page.templateI18n) : {};
+          }
+          if(page.indexRouteName) {
+            const i18nIndexRouteName = page.indexRouteName.charAt(0).toLowerCase() + page.indexRouteName.slice(1);
+            i18nKeys[i18nIndexRouteName] = page.indexTemplateI18n ? JSON.parse(page.indexTemplateI18n) : {};
+          }
+        });
+
+        const appRoutes = pagesByParent['-'].map(route=>constructRoute(route));
+
+        resolve({appRoutes, i18nKeys});
+
+        function constructRoute(route) {
+          const newRoute = {
+            path: route.slug,
+            name: route.routeName,
+            componentName: route.componentName,
+            breadcrumbName: route.breadcrumbName
+          };
+          if(route.sitemapModel) {
+            newRoute.sitemapModel = JSON.parse(route.sitemapModel);
+          }
+          if(route.redirectTo) {
+            newRoute.redirectTo = route.redirectTo;
+          }
+          if(route.indexRouteName) {
+            newRoute.indexRoute = {
+              name: route.indexRouteName,
+              componentName: route.indexComponentName,
+              metaTitle: route.metaTitle,
+              metaDescription: route.metaDescription
+            }
+          } else {
+            newRoute.metaTitle = route.metaTitle;
+            newRoute.metaDescription = route.metaDescription;
+          }
+          if(pagesByParent[route.id]) {
+            newRoute.childRoutes = pagesByParent[route.id].map(route=>constructRoute(route));
+          }
+          return newRoute;
+        }
+
+      }).catch(reject);
+    })
   }
 };

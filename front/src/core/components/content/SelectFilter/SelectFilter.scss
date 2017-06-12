@@ -1,0 +1,201 @@
+////multiSelect cutomization
+//.Select-menu-outer {
+//  background-color: #191B23;
+//  border : 1px solid #3E4250;
+//  border-bottom-right-radius: 20px;
+//  border-bottom-left-radius: 20px;
+//  border-top: 1px solid #252730;
+//  .Select-option {
+//    display:flex;
+//    align-items: center;
+//    background-color: #191B23;
+//    font-family: 'Ubuntu';
+//    font-size: 14px;
+//    color: #ccc;
+//    padding: 8px 12px;
+//  }
+//}
+//.Select.Select--filter {
+//  * {
+//    outline: none !important;
+//    box-shadow: none !important;
+//  }
+//  &.is-open {
+//    .Select-option {
+//      background: transparent;
+//    }
+//
+//    .Select-control {
+//      border-bottom-right-radius: 0;
+//      border-bottom-left-radius: 0;
+//
+//    }
+//  }
+//  &.is-focused,&.has-value {
+//    .Select-control {
+//      height: 32px;
+//      display: inline-flex;
+//      align-items: center;
+//
+//      .Select-clear-zone {
+//        margin-left: auto;
+//      }
+//    }
+//  }
+//  .Select-control {
+//    background-color: transparent;
+//    border: 1px solid #3E4250;
+//    border-radius: 17px;
+//    color: #ccc;
+//    font-family: 'Ubuntu';
+//    font-weight: lighter;
+//    font-size: 14px;
+//    line-height: 30px;
+//    vertical-align: middle;
+//    height: 30px;
+//    width: 220px;
+//    .Select-input {
+//      line-height: 20px;
+//      height: 30px;
+//      display: flex;
+//      align-items: center;
+//      padding-left: 5px;
+//      margin-left: 10px;
+//      padding-right: 40px;
+//      input {
+//        width: 100% !important;
+//      }
+//    }
+//
+//    .Select-arrow-zone {
+//      position: absolute;
+//      top:0;
+//      right:5px;
+//      padding-right: 0;
+//      padding-bottom: 20px;
+//    }
+//
+//    .Select-clear-zone {
+//      position: absolute;
+//      top:0;
+//      right:28px;
+//      padding-right: 0;
+//      padding-bottom: 20px;
+//      .Select-clear {
+//        font-size: 24px;
+//        font-weight: bold;
+//        color: #9b9fb2;
+//        display: block;
+//        margin-top: 2px;
+//        &:hover {
+//          color: #b31111;
+//        }
+//      }
+//    }
+//    .Select-placeholder {
+//      color: #ccc;
+//      font-family: 'Ubuntu';
+//      font-style: italic;
+//      font-weight: lighter;
+//      font-size: 14px;
+//      padding-left: 15px;
+//      line-height: 30px;
+//    }
+//    .Select-multi-value-wrapper {
+//      display: inline-flex;
+//      align-items: center;
+//      .Select-value {
+//        padding: 0 15px;
+//
+//        .Select-value-icon {
+//          color: #3E4250;
+//          background: #191B23;
+//          margin: 1px 1px;
+//          border: none;
+//          display: inline-flex;
+//          height: 11px;
+//          width: 11px;
+//          align-items: center;
+//          justify-content: center;
+//          -webkit-border-radius:50%;
+//          -moz-border-radius: 50%;
+//          border-radius: 50%;
+//        }
+//        .Select-value-label {
+//          color: #fff;
+//          display: block;
+//          line-height: 30px;
+//        }
+//      }
+//    }
+//  }
+//}
+//
+//
+//.Select.Select--filter-userGroups {
+//  position: relative;
+//  border-bottom: 1px dashed #b5bcce;
+//  height: 28px;
+//  margin-bottom: 4px;
+//  * {
+//    outline: none !important;
+//    box-shadow: none !important;
+//  }
+//  &:before {
+//    font-family: icomoon, sans-serif;
+//    content: "\E907";
+//    position: absolute;
+//    right: 100%;
+//    top: -6px;
+//    margin-right: 8px;
+//    font-size: 16px;
+//    background: #3e4250;
+//    width: 36px;
+//    height: 36px;
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    border-radius: 50%;
+//  }
+//  .Select-control {
+//    border-radius: 0;
+//    border:none;
+//    width: 300px;
+//    background-color: transparent;
+//  }
+//  .Select-value {
+//    background: none !important;
+//    line-height: 22px;
+//    padding-left: 0 !important;
+//    padding-right: 0 !important;
+//    &-label {
+//      color: #b5bcce !important;
+//      font-size: 14px;
+//      font-weight: 400;
+//      overflow: hidden;
+//      white-space: nowrap;
+//      text-overflow: ellipsis;
+//      display: block !important;
+//      padding-right: 30px;
+//
+//    }
+//  }
+//  .Select-clear-zone {
+//    opacity: 0;
+//    visibility: hidden;
+//  }
+//  .Select-arrow-zone {
+//    padding-right: 0;
+//    padding-bottom: 20px;
+//  }
+//  .Select-input {
+//    margin-bottom: 10px;
+//    padding-left: 0 !important;
+//    color: #b5bcce;
+//    position: relative;
+//    top: -5px;
+//  }
+//  .Select-menu-outer {
+//    z-index: 9999;
+//  }
+//}
